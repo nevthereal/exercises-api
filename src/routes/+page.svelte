@@ -1,9 +1,9 @@
 <script lang="ts">
-	import type { PageServerData } from './$types';
+	import type { ActionData } from './$types';
 
-	export let data: PageServerData;
+	export let data: ActionData;
 
-	let result = data;
+	let result = data?.result;
 </script>
 
 <main class="w-screen h-screen flex">
@@ -17,6 +17,12 @@
 				<option value="muscle">Muscle</option>
 			</select>
 			<button class="btn variant-ghost-primary">Search</button>
+			{#if $result}
+				{#each $result as res}
+					<h1 class="h1">{res.name}</h1>
+					<p>{res.muscle}</p>
+				{/each}
+			{/if}
 		</form>
 	</div>
 </main>
